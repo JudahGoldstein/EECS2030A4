@@ -35,6 +35,14 @@ public class Tests {
     void remove1(){
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
         a.add(0, 0);
+        a.remove(0);
+        Assertions.assertNull(a.get(0));
+    }
+
+    @Test
+    void remove2(){
+        DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
+        a.add(0, 0);
         a.add(1, 1);
         a.add(2, 2);
         a.add(3, 3);
