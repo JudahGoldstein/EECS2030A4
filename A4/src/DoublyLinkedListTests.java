@@ -49,7 +49,7 @@ public class DoublyLinkedListTests {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
         a.add(0, 0);
         a.remove(0);
-        Assertions.assertThrows(IndexOutOfBoundsException.class,()-> a.get(0));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(0));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.get(0), 0);
         Assertions.assertEquals(a.get(1), 2);
         Assertions.assertEquals(a.get(2), 3);
-        Assertions.assertThrows(IndexOutOfBoundsException.class,()-> a.get(0));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(0));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class DoublyLinkedListTests {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
         a.add(0, 0);
         a.pop();
-        Assertions.assertThrows(IndexOutOfBoundsException.class,()-> a.get(0));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(0));
     }
 
     @Test
@@ -85,7 +85,7 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.get(0), 0);
         Assertions.assertEquals(a.get(1), 2);
         Assertions.assertEquals(a.get(2), 3);
-        Assertions.assertThrows(IndexOutOfBoundsException.class,()-> a.get(3));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(3));
     }
 
     @Test
@@ -106,11 +106,12 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.get(0), 0);
         Assertions.assertEquals(a.get(1), 2);
         Assertions.assertEquals(a.get(2), 3);
-        Assertions.assertThrows(IndexOutOfBoundsException.class,()-> a.get(3));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(3));
     }
 
     @Test
-    void size1(){
+    void size1() {
+        DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
 
     }
 
