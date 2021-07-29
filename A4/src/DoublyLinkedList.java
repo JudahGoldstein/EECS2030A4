@@ -124,8 +124,10 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
                 prevNode = currNode.previous;
 
             // reforms the link
-            nextNode.previous = prevNode;
-            prevNode.next = nextNode;
+            if (nextNode != null)
+                nextNode.previous = prevNode;
+            if (prevNode != null)
+                prevNode.next = nextNode;
 
             // updates head pointer
             if (currNode == head)
