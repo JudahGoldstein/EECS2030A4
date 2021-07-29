@@ -3,6 +3,14 @@ import java.util.*;
 
 public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements List<T>, Cloneable, Serializable {
 
+    private Node<T> head;
+    private int size;
+
+    public DoublyLinkedList() {
+        this.head = null;
+        this.size = 0;
+    }
+
     public void add(int index, T o) {
         
     }
@@ -44,6 +52,10 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
 
     /** ListIterator */
     public class DoublyLinkedListIterator implements ListIterator<T> {
+
+        public DoublyLinkedListIterator(Node<T> head, int index) {
+            
+        }
 
         @Override
         public boolean hasNext() {
