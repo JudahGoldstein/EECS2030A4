@@ -11,7 +11,7 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         this.size = 0;
     }
 
-    public void add(int index, T o) {
+    /*public void add(int index, T o) {
         
     }
     
@@ -25,7 +25,7 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
 
     public boolean addAll(int index, Collection<? extends T> c) {
         return false;
-    }
+    }*/
 
     public void push(T value) {
 
@@ -37,12 +37,12 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        return null;
+        return new DoublyLinkedListIterator(head, index);
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
