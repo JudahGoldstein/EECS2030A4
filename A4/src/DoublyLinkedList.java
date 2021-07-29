@@ -53,53 +53,118 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
     /** ListIterator */
     public class DoublyLinkedListIterator implements ListIterator<T> {
 
+        private Node<T> currNode;   // last element returned by next/previous
+        private Node<T> prevNode;   // previous node of the cursor
+        private Node<T> nextNode;   // next node of the cursor
+        private int nxtInd;         // index of nextNode
+
         public DoublyLinkedListIterator(Node<T> head, int index) {
-            
+            currNode = null;
+            prevNode = null;
+            nextNode = head;
+            nxtInd = 0;
+
+            while (nextIndex() != index)
+                next();
         }
 
         @Override
         public boolean hasNext() {
-            return false;
+            return nextNode != null;
         }
 
         @Override
         public T next() {
-            return null;
+            if (nextNode == null) {
+                throw new NoSuchElementException();
+            }
+            currNode = nextNode;
+            nextNode = nextNode.next;
+            prevNode = currNode;
+            nxtInd++;
+            return currNode.data;
         }
 
         @Override
         public boolean hasPrevious() {
-            return false;
+            return prevNode != null;
         }
 
         @Override
         public T previous() {
-            return null;
+            if (prevNode == null)
+                throw new NoSuchElementException();
+
+            currNode = prevNode;
+            prevNode = prevNode.previous;
+            nextNode = currNode;
+            nxtInd--;
+            return currNode.data;
         }
 
         @Override
         public int nextIndex() {
-            return 0;
+            return nxtInd;
         }
 
         @Override
         public int previousIndex() {
-            return 0;
+            return nxtInd - 1;
         }
 
         @Override
         public void remove() {
+            if (currNode == null)
+                throw new IllegalStateException();
 
+            // updates pointer
+            if (currNode == nextNode)
+                nextNode = currNode.next;
+            else
+                prevNode = currNode.previous;
+
+            // reforms the link
+            nextNode.previous = prevNode;
+            prevNode.next = nextNode;
+
+            // updates head pointer
+            if (currNode == head)
+                head = currNode.next;
+
+            currNode = null;
+            nxtInd--;
+            size--;
         }
 
         @Override
         public void set(T t) {
-
+            if (currNode == null)
+                throw new IllegalStateException();
+            currNode.data = t;
         }
 
         @Override
         public void add(T t) {
+            Node<T> newNode = new Node(t);
 
+            // reforms link
+            if (prevNode != null)
+                prevNode.next = newNode;
+            if (nextNode != null)
+                nextNode.previous = newNode;
+
+            newNode.previous = prevNode;
+            newNode.next = nextNode;
+
+            // updates pointers
+            prevNode = newNode;
+            currNode = null;
+            nxtInd++;
+            size++;
+
+            // updates head
+            if (newNode.previous == null)
+                head = newNode;
         }
     }
 
