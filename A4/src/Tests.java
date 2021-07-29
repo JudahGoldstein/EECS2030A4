@@ -27,8 +27,8 @@ public class Tests {
         a.add(1, 3);
         Assertions.assertEquals(a.get(0), 0);
         Assertions.assertEquals(a.get(1), 3);
-        Assertions.assertEquals(a.get(1), 3);
-        Assertions.assertEquals(a.get(1), 3);
+        Assertions.assertEquals(a.get(2), 1);
+        Assertions.assertEquals(a.get(3), 2);
     }
 
     @Test
