@@ -2,7 +2,6 @@ import java.io.Serializable;
 import java.util.*;
 
 public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements List<T>, Cloneable, Serializable {
-
     private Node<T> head;
     private int size;
 
@@ -12,9 +11,8 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
     }
 
     /*public void add(int index, T o) {
-        
     }
-    
+
     public T remove(int index) {
         return null;
     }
@@ -50,7 +48,9 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         return super.clone();
     }
 
-    /** ListIterator */
+    /**
+     * ListIterator
+     */
     public class DoublyLinkedListIterator implements ListIterator<T> {
 
         private Node<T> currNode;   // last element returned by next/previous
@@ -170,11 +170,14 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         }
     }
 
-    /** Node class for DoublyLinkedList */
+    /**
+     * Node class for DoublyLinkedList
+     */
     private static final class Node<T> {
         private T data; //data holder for the node
         private Node<T> next; //link to the next node
         private Node<T> previous; //link to the previous node
+
         public Node(T data) {
             this.data = data;
             this.next = null;
