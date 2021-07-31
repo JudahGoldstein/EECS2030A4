@@ -5,11 +5,19 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
     private Node<T> head;
     private int size;
 
+    /**
+     * constructor
+     */
     public DoublyLinkedList() {
         this.head = null;
         this.size = 0;
     }
 
+    /**
+     * adds node to end of list
+     *
+     * @param value value of node to be added
+     */
     public void push(T value) {
         Node<T> toAdd = new Node<>(value);
         if (head == null) {
@@ -24,6 +32,11 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         size++;
     }
 
+    /**
+     * removes the final item in the list
+     *
+     * @return weather or not an item is removed
+     */
     public Node<T> pop() {
         Node<T> toDelete = head;
         if (head == null) {
@@ -49,6 +62,9 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         return new DoublyLinkedListIterator(head, index);
     }
 
+    /**
+     * @return number of elements in the list
+     */
     @Override
     public int size() {
         return size;
