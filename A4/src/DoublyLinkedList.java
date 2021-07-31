@@ -70,6 +70,11 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         return size;
     }
 
+    /**
+     * @param index index for the nodes to be added to
+     * @param c     the collection of nodes to be added
+     * @return weather or not anything was added to the list
+     */
     public boolean addAll(int index, Collection<? extends T> c) {
         if (c.size() == 0) {
             return false;
@@ -99,15 +104,22 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
             nextNode = head;
             nxtInd = 0;
 
-            while (nextIndex() != index)
+            while (nextIndex() != index) {
                 next();
+            }
         }
 
+        /**
+         * @return weather or not there is a non-null node after the head
+         */
         @Override
         public boolean hasNext() {
             return nextNode != null;
         }
 
+        /**
+         * @return moves context to next node
+         */
         @Override
         public T next() {
             if (nextNode == null) {
