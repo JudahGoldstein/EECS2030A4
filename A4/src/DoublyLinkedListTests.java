@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import java.util.Collection;
 
 public class DoublyLinkedListTests {
+    /**
+     * variables types check
+     */
     @Test
     void get1() {
         DoublyLinkedList<Object> a = new DoublyLinkedList<>();
@@ -17,6 +20,9 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.get(3), true);
     }
 
+    /**
+     * adding single node
+     */
     @Test
     void add1() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -24,6 +30,9 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.get(0), 0);
     }
 
+    /**
+     * add multiple nodes
+     */
     @Test
     void add2() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -33,6 +42,9 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.get(1), 1);
     }
 
+    /**
+     * adding node in the middle
+     */
     @Test
     void add3() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -46,6 +58,9 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.get(3), 2);
     }
 
+    /**
+     * remove node
+     */
     @Test
     void remove1() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -54,6 +69,9 @@ public class DoublyLinkedListTests {
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(0));
     }
 
+    /**
+     * remove in the middle
+     */
     @Test
     void remove2() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -68,6 +86,9 @@ public class DoublyLinkedListTests {
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(3));
     }
 
+    /**
+     * pop only node
+     */
     @Test
     void pop1() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -76,6 +97,9 @@ public class DoublyLinkedListTests {
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(0));
     }
 
+    /**
+     * repeated pops
+     */
     @Test
     void pop2() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -86,6 +110,9 @@ public class DoublyLinkedListTests {
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(0));
     }
 
+    /**
+     * pop between adds
+     */
     @Test
     void pop3() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -100,6 +127,9 @@ public class DoublyLinkedListTests {
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(3));
     }
 
+    /**
+     * push single node
+     */
     @Test
     void push1() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -107,6 +137,9 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.get(0), 0);
     }
 
+    /**
+     * mixing push and pop
+     */
     @Test
     void push2() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -123,6 +156,9 @@ public class DoublyLinkedListTests {
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(3));
     }
 
+    /**
+     * size with no removal
+     */
     @Test
     void size1() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -133,6 +169,9 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.size(), 4);
     }
 
+    /**
+     * size with removal
+     */
     @Test
     void size2() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
@@ -145,29 +184,38 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.size(), 4);
     }
 
+    /**
+     * empty size
+     */
     @Test
     void size3() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
         Assertions.assertEquals(a.size(), 0);
     }
 
+    /**
+     * addAll to end
+     */
     @Test
-    void addAll1(){
+    void addAll1() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
         DoublyLinkedList<Integer> b = new DoublyLinkedList<>();
         a.push(0);
         a.push(1);
         b.push(2);
         b.push(3);
-        a.addAll(2,b);
+        a.addAll(2, b);
         Assertions.assertEquals(a.get(0), 0);
         Assertions.assertEquals(a.get(1), 1);
         Assertions.assertEquals(a.get(2), 2);
         Assertions.assertEquals(a.get(3), 3);
     }
 
+    /**
+     * addAll to middle
+     */
     @Test
-    void addAll2(){
+    void addAll2() {
         DoublyLinkedList<Integer> a = new DoublyLinkedList<>();
         DoublyLinkedList<Integer> b = new DoublyLinkedList<>();
         a.push(0);
@@ -178,7 +226,7 @@ public class DoublyLinkedListTests {
         b.push(3);
         b.push(4);
         b.push(5);
-        a.addAll(2,b);
+        a.addAll(2, b);
         Assertions.assertEquals(a.get(0), 0);
         Assertions.assertEquals(a.get(1), 1);
         Assertions.assertEquals(a.get(2), 2);
