@@ -10,27 +10,38 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         this.size = 0;
     }
 
-    /*public void add(int index, T o) {
-    }
-
-    public T remove(int index) {
-        return null;
-    }
-
-    public T get(int index) {
-        return null;
-    }
-
-    public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
-    }*/
-
     public void push(T value) {
-
+        Node<T> toAdd = new Node<>(value);
+        if (head == null) {
+            head = toAdd;
+        } else {
+            while (head.next != null) {
+                head = head.next;
+            }
+            toAdd.previous = head;
+            head.next = toAdd;
+        }
+        size++;
     }
 
-    public T pop() {
-        return null;
+    public Node<T> pop() {
+        Node<T> toDelete = head;
+        if (head == null) {
+            return null;
+        }
+        if (head.next == null) {
+            head = null;
+            size--;
+            return toDelete;
+        }
+        while (head.next != null) {
+            head = head.next;
+        }
+        head = head.previous;
+        toDelete = head.next;
+        head.next = null;
+        size--;
+        return toDelete;
     }
 
     @Override
@@ -43,9 +54,17 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         return size;
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public boolean addAll(int index, Collection<? extends T> c) {
+        if (c.size() == 0) {
+            return false;
+        }
+        while (c.iterator().next() != null) {
+            add(index, c.iterator().next());
+            index++;
+        }
+        size += c.size();
+        return true;
+
     }
 
     /**
