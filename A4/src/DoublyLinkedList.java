@@ -132,6 +132,9 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
             return currNode.data;
         }
 
+        /**
+         * @return weather or not there is a non-null node before the head
+         */
         @Override
         public boolean hasPrevious() {
             return prevNode != null;
