@@ -76,18 +76,19 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
      * @param c     the collection of nodes to be added
      * @return weather or not anything was added to the list
      */
-    /*public boolean addAll(int index, Collection<? extends T> c) {
+    public boolean addAll(int index, Collection<? extends T> c) {
         if (c.size() == 0) {
             return false;
         }
-        while (c.iterator().next() != null) {
-            add(index, c.iterator().next());
+        Iterator<T> iterator = (Iterator<T>) c.iterator();
+        while (iterator.hasNext()) {
+            add(index, iterator.next());
             index++;
         }
         size += c.size();
         return true;
 
-    }*/
+    }
 
     /**
      * ListIterator
