@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
@@ -19,63 +18,63 @@ public class DoublyLinkedListIteratorTests {
 
     @Test
     public void TestHasNext() {
-        ListIterator iterator = getSampleList().listIterator(0);
-        Assertions.assertEquals(true, iterator.hasNext());
+        ListIterator<?> iterator = getSampleList().listIterator(0);
+        Assertions.assertTrue(iterator.hasNext());
         iterator.next();
-        Assertions.assertEquals(true, iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         iterator.next();
-        Assertions.assertEquals(true, iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         iterator.next();
-        Assertions.assertEquals(true, iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         iterator.next();
-        Assertions.assertEquals(true, iterator.hasNext());
+        Assertions.assertTrue(iterator.hasNext());
         iterator.next();
-        Assertions.assertEquals(false, iterator.hasNext());
+        Assertions.assertFalse(iterator.hasNext());
     }
 
     @Test
     public void TestNext() {
-        ListIterator iterator = getSampleList().listIterator(0);
+        ListIterator<?> iterator = getSampleList().listIterator(0);
         Assertions.assertEquals(1, iterator.next());
         Assertions.assertEquals(2, iterator.next());
         Assertions.assertEquals(3, iterator.next());
         Assertions.assertEquals(4, iterator.next());
         Assertions.assertEquals(5, iterator.next());
-        Assertions.assertThrows(NoSuchElementException.class, () -> iterator.next());
+        Assertions.assertThrows(NoSuchElementException.class, iterator::next);
     }
 
     @Test
     public void TestHasPrevious() {
-        ListIterator iterator = getSampleList().listIterator(5);
-        
-        Assertions.assertEquals(true, iterator.hasPrevious());
+        ListIterator<?> iterator = getSampleList().listIterator(5);
+
+        Assertions.assertTrue(iterator.hasPrevious());
         iterator.previous();
-        Assertions.assertEquals(true, iterator.hasPrevious());
+        Assertions.assertTrue(iterator.hasPrevious());
         iterator.previous();
-        Assertions.assertEquals(true, iterator.hasPrevious());
+        Assertions.assertTrue(iterator.hasPrevious());
         iterator.previous();
-        Assertions.assertEquals(true, iterator.hasPrevious());
+        Assertions.assertTrue(iterator.hasPrevious());
         iterator.previous();
-        Assertions.assertEquals(true, iterator.hasPrevious());
+        Assertions.assertTrue(iterator.hasPrevious());
         iterator.previous();
-        Assertions.assertEquals(false, iterator.hasPrevious());
+        Assertions.assertFalse(iterator.hasPrevious());
     }
 
     @Test
     public void TestPrevious() {
-        ListIterator iterator = getSampleList().listIterator(5);
-        
+        ListIterator<?> iterator = getSampleList().listIterator(5);
+
         Assertions.assertEquals(5, iterator.previous());
         Assertions.assertEquals(4, iterator.previous());
         Assertions.assertEquals(3, iterator.previous());
         Assertions.assertEquals(2, iterator.previous());
         Assertions.assertEquals(1, iterator.previous());
-        Assertions.assertThrows(NoSuchElementException.class, () -> iterator.previous());
+        Assertions.assertThrows(NoSuchElementException.class, iterator::previous);
     }
 
     @Test
     public void TestNextIndex() {
-        ListIterator iterator = getSampleList().listIterator(0);
+        ListIterator<?> iterator = getSampleList().listIterator(0);
 
         Assertions.assertEquals(0, iterator.nextIndex());
         iterator.next();
@@ -92,7 +91,7 @@ public class DoublyLinkedListIteratorTests {
 
     @Test
     public void TestPreviousIndex() {
-        ListIterator iterator = getSampleList().listIterator(5);
+        ListIterator<?> iterator = getSampleList().listIterator(5);
 
         Assertions.assertEquals(4, iterator.previousIndex());
         iterator.previous();
@@ -141,22 +140,22 @@ public class DoublyLinkedListIteratorTests {
         ListIterator<Integer> iterator = list.listIterator(2);
 
         // calling remove without calling next/previous
-        Assertions.assertThrows(IllegalStateException.class, () -> iterator.remove());
+        Assertions.assertThrows(IllegalStateException.class, iterator::remove);
 
         // calling remove after calling next
         iterator.next();
-        Assertions.assertDoesNotThrow(() -> iterator.remove());
+        Assertions.assertDoesNotThrow(iterator::remove);
 
         // calling remove again after calling remove
-        Assertions.assertThrows(IllegalStateException.class, () -> iterator.remove());
+        Assertions.assertThrows(IllegalStateException.class, iterator::remove);
 
         // calling remove after calling previous
         iterator.previous();
-        Assertions.assertDoesNotThrow(() -> iterator.remove());
+        Assertions.assertDoesNotThrow(iterator::remove);
 
         // calling remove after calling add
         iterator.add(9);
-        Assertions.assertThrows(IllegalStateException.class, () -> iterator.remove());
+        Assertions.assertThrows(IllegalStateException.class, iterator::remove);
     }
 
     @Test
