@@ -14,6 +14,44 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
     }
 
     /**
+     * Adds element at index, and shift previous elements to right.
+     * @param index Index of the newly added element.
+     * @param o Element to be added.
+     * @throws IndexOutOfBoundsException if index < 0 or index > size.
+     */
+    @Override
+    public void add(int index, T o) {
+        ListIterator<T> iterator = listIterator(index);
+        iterator.add(o);
+    }
+
+    /**
+     * Returns the element at index.
+     * @param index Index of the element to be returned.
+     * @return The element at index.
+     * @throws IndexOutOfBoundsException if index < 0 or index > size.
+     */
+    @Override
+    public T get(int index) {
+        ListIterator<T> iterator = listIterator(index);
+        return iterator.next();
+    }
+
+    /**
+     * Removes element at index, and returns it.
+     * @param index Index of element to be removed.
+     * @return The removed element.
+     * @throws IndexOutOfBoundsException if index < 0 or index > size.
+     */
+    @Override
+    public T remove(int index) {
+        ListIterator<T> iterator = listIterator(index);
+        T element = iterator.next();
+        iterator.remove();
+        return element;
+    }
+
+    /**
      * adds node to end of list
      *
      * @param value value of node to be added
