@@ -78,7 +78,6 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
             }
             add(index, value);
         }
-        size++;
     }
 
     /**
@@ -97,7 +96,6 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
             }
             return get(index - 1);
         } finally {
-            size--;
             remove(index - 1);
         }
     }

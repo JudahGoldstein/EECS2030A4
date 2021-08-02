@@ -154,7 +154,7 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.get(0), 0);
         Assertions.assertEquals(a.get(1), 2);
         Assertions.assertEquals(a.get(2), 3);
-        Assertions.assertThrows(NoSuchElementException.class, () -> a.get(3));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(3));
     }
 
     /**
