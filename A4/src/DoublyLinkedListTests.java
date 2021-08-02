@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class DoublyLinkedListTests {
     /**
@@ -149,13 +150,11 @@ public class DoublyLinkedListTests {
         a.push(1);
         a.pop();
         a.push(2);
-        System.out.println(a);
         a.push(3);
-        System.out.println(a);
         Assertions.assertEquals(a.get(0), 0);
         Assertions.assertEquals(a.get(1), 2);
         Assertions.assertEquals(a.get(2), 3);
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> a.get(3));
+        Assertions.assertThrows(NoSuchElementException.class, () -> a.get(3));
     }
 
     /**

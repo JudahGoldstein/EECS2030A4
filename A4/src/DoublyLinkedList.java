@@ -66,16 +66,14 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
      * @param value value of node to be added
      */
     public void push(T value) {
-        Node<T> toAdd = new Node<>(value);
-        if (head == null) {
-            head = toAdd;
+        if (size == 0) {
+            add(0, value);
         } else {
-            Node<T> lastElement = head;
-            while (lastElement.next != null) {
-                lastElement = lastElement.next;
+            int index = 0;
+            while (listIterator(index).hasNext()) {
+                index++;
             }
-            toAdd.previous = lastElement;
-            lastElement.next = toAdd;
+            add(index, value);
         }
         size++;
     }
