@@ -162,11 +162,20 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         while (iterator1.hasNext() && iterator2.hasNext()) {
             T e1 = iterator1.next();
             T e2 = iterator2.next();
-            boolean firstMismatch = !(e1==null ? e2==null : e1.equals(e2));
+            boolean firstMismatch = !(Objects.equals(e1, e2));
             if (firstMismatch)
                 return false;
         }
         return true;
+    }
+
+    @Override
+    public DoublyLinkedList<T> clone() {
+        try {
+            return (DoublyLinkedList<T>) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 
     /**

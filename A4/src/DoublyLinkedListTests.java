@@ -243,19 +243,29 @@ public class DoublyLinkedListTests {
         DoublyLinkedList<Integer> list1 = new DoublyLinkedList<>();
         DoublyLinkedList<Integer> list2 = new DoublyLinkedList<>();
 
-        Assertions.assertTrue(list1.equals(list2));
+        Assertions.assertEquals(list1, list2);
 
         list1.add(1);
         list1.add(2);
         list1.add(3);
         list2.add(1);
         list2.add(3);
-        Assertions.assertFalse(list1.equals(list2));
+        Assertions.assertNotEquals(list1, list2);
 
         list2.add(1, 2);
-        Assertions.assertTrue(list1.equals(list2));
+        Assertions.assertEquals(list1, list2);
 
         list1.set(1, 9);
-        Assertions.assertFalse(list1.equals(list2));
+        Assertions.assertNotEquals(list1, list2);
+    }
+
+    @Test
+    void clone1() {
+        DoublyLinkedList<Integer> list1 = new DoublyLinkedList<>();
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
+        DoublyLinkedList<?> list2 = list1.clone();
+        Assertions.assertEquals(list1,list2);
     }
 }
