@@ -146,6 +146,34 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
     }
 
     /**
+     * Returns true if o is equal to this object.
+     * o is equal to this object only if both of them are instance of DoublyLinkedList,
+     * both of them have same size, and corresponding elements of the lists are equal.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || o.getClass() != this.getClass())
+            return false;
+
+        DoublyLinkedList<T> oList = ((DoublyLinkedList<T>) o);
+
+        if (oList.size() != this.size())
+            return false;
+
+        ListIterator<T> iterator1 = this.listIterator(0);
+        ListIterator<T> iterator2 = oList.listIterator(0);
+
+        while (iterator1.hasNext() && iterator2.hasNext()) {
+            T e1 = iterator1.next();
+            T e2 = iterator2.next();
+            boolean firstMismatch = !(e1==null ? e2==null : e1.equals(e2));
+            if (firstMismatch)
+                return false;
+        }
+        return true;
+    }
+
+    /**
      * ListIterator
      */
     public class DoublyLinkedListIterator implements ListIterator<T> {

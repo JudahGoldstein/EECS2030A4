@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 public class DoublyLinkedListTests {
     /**
@@ -235,5 +237,26 @@ public class DoublyLinkedListTests {
         Assertions.assertEquals(a.get(5), 5);
         Assertions.assertEquals(a.get(6), 6);
         Assertions.assertEquals(a.get(7), 7);
+    }
+
+    @Test
+    void equals() {
+        DoublyLinkedList<Integer> list1 = new DoublyLinkedList<>();
+        DoublyLinkedList<Integer> list2 = new DoublyLinkedList<>();
+
+        Assertions.assertTrue(list1.equals(list2));
+
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
+        list2.add(1);
+        list2.add(3);
+        Assertions.assertFalse(list1.equals(list2));
+
+        list2.add(1, 2);
+        Assertions.assertTrue(list1.equals(list2));
+
+        list1.set(1, 9);
+        Assertions.assertFalse(list1.equals(list2));
     }
 }
