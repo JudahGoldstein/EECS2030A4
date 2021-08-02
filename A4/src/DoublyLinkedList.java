@@ -22,9 +22,9 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
      */
     @Override
     public void add(int index, T o) {
-        if (index < 0 || index > size())
+        if (index < 0 || index > size()) {
             throw new IndexOutOfBoundsException();
-
+        }
         ListIterator<T> iterator = listIterator(index);
         iterator.add(o);
     }
@@ -95,9 +95,10 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
             while (listIterator(index).hasNext()) {
                 index++;
             }
-            return get(index-1);
+            return get(index - 1);
         } finally {
-            remove(index-1);
+            size--;
+            remove(index - 1);
         }
     }
 
