@@ -21,6 +21,9 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
      */
     @Override
     public void add(int index, T o) {
+        if (index < 0 || index > size())
+            throw new IndexOutOfBoundsException();
+
         ListIterator<T> iterator = listIterator(index);
         iterator.add(o);
     }
@@ -29,10 +32,13 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
      * Returns the element at index.
      * @param index Index of the element to be returned.
      * @return The element at index.
-     * @throws IndexOutOfBoundsException if index < 0 or index > size.
+     * @throws IndexOutOfBoundsException if index < 0 or index >= size.
      */
     @Override
     public T get(int index) {
+        if (index < 0 || index >= size())
+            throw new IndexOutOfBoundsException();
+
         ListIterator<T> iterator = listIterator(index);
         return iterator.next();
     }
@@ -41,10 +47,13 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
      * Removes element at index, and returns it.
      * @param index Index of element to be removed.
      * @return The removed element.
-     * @throws IndexOutOfBoundsException if index < 0 or index > size.
+     * @throws IndexOutOfBoundsException if index < 0 or index >= size.
      */
     @Override
     public T remove(int index) {
+        if (index < 0 || index >= size())
+            throw new IndexOutOfBoundsException();
+
         ListIterator<T> iterator = listIterator(index);
         T element = iterator.next();
         iterator.remove();
@@ -96,8 +105,17 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         return toDelete;
     }
 
+    /**
+     * Returns an instance of list iterator.
+     * @param index Index of the element that would be returned by next().
+     * @return Instance of list iterator.
+     * @throws IndexOutOfBoundsException if index < 0 or index > size.
+     */
     @Override
     public ListIterator<T> listIterator(int index) {
+        if (index < 0 || index > size())
+            throw new IndexOutOfBoundsException();
+
         return new DoublyLinkedListIterator(head, index);
     }
 
@@ -139,14 +157,11 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
 
         /**
          * Constructs a list iterator with the provided head and index.
+         * Pre-condition: index must be between 0 and size() inclusively.
          * @param head Head of the list.
          * @param index Cursor is moved just before the index.
-         * @throws IndexOutOfBoundsException if index < 0 or index > size.
          */
         public DoublyLinkedListIterator(Node<T> head, int index) {
-            if (index < 0 || index > size())
-                throw new IndexOutOfBoundsException();
-
             currNode = null;
             prevNode = null;
             nextNode = head;
