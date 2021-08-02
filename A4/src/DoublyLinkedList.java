@@ -99,7 +99,16 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         private Node<T> nextNode;   // next node of the cursor
         private int nxtInd;         // index of nextNode
 
+        /**
+         * Constructs a list iterator with the provided head and index.
+         * @param head Head of the list.
+         * @param index Cursor is moved just before the index.
+         * @throws IndexOutOfBoundsException if index < 0 or index > size.
+         */
         public DoublyLinkedListIterator(Node<T> head, int index) {
+            if (index < 0 || index > size())
+                throw new IndexOutOfBoundsException();
+
             currNode = null;
             prevNode = null;
             nextNode = head;
@@ -108,7 +117,6 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
             while (nextIndex() != index) {
                 next();
             }
-
             currNode = null;
         }
 

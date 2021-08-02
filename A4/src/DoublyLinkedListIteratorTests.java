@@ -1,10 +1,22 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class DoublyLinkedListIteratorTests {
+    @Test
+    public void TestConstructor() {
+        DoublyLinkedList<Integer> list = getSampleList();
+        Assertions.assertEquals(2, list.listIterator(2).nextIndex());
+        Assertions.assertEquals(5, list.listIterator(5).nextIndex());
+        Assertions.assertThrows(IndexOutOfBoundsException.class,
+                () -> list.listIterator(6));
+        Assertions.assertThrows(IndexOutOfBoundsException.class,
+                () -> list.listIterator(-1));
+    }
+
     @Test
     public void TestHasNext() {
         ListIterator iterator = getSampleList().listIterator(0);
