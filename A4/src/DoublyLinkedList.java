@@ -15,21 +15,23 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
 
     /**
      * Adds element at index, and shift previous elements to right.
+     *
      * @param index Index of the newly added element.
-     * @param o Element to be added.
+     * @param o     Element to be added.
      * @throws IndexOutOfBoundsException if index < 0 or index > size.
      */
     @Override
     public void add(int index, T o) {
-        if (index < 0 || index > size())
+        if (index < 0 || index > size()) {
             throw new IndexOutOfBoundsException();
-
+        }
         ListIterator<T> iterator = listIterator(index);
         iterator.add(o);
     }
 
     /**
      * Returns the element at index.
+     *
      * @param index Index of the element to be returned.
      * @return The element at index.
      * @throws IndexOutOfBoundsException if index < 0 or index >= size.
@@ -45,6 +47,7 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
 
     /**
      * Removes element at index, and returns it.
+     *
      * @param index Index of element to be removed.
      * @return The removed element.
      * @throws IndexOutOfBoundsException if index < 0 or index >= size.
@@ -83,28 +86,25 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
      *
      * @return weather or not an item is removed
      */
-    public Node<T> pop() {
-        Node<T> toDelete = head;
-        if (head == null) {
+    public T pop() {
+        if (size == 0) {
             return null;
         }
-        if (head.next == null) {
-            head = null;
+        int index = 0;
+        try {
+            while (listIterator(index).hasNext()) {
+                index++;
+            }
+            return get(index - 1);
+        } finally {
             size--;
-            return toDelete;
+            remove(index - 1);
         }
-        while (head.next != null) {
-            head = head.next;
-        }
-        head = head.previous;
-        toDelete = head.next;
-        head.next = null;
-        size--;
-        return toDelete;
     }
 
     /**
      * Returns an instance of list iterator.
+     *
      * @param index Index of the element that would be returned by next().
      * @return Instance of list iterator.
      * @throws IndexOutOfBoundsException if index < 0 or index > size.
@@ -184,7 +184,8 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
         /**
          * Constructs a list iterator with the provided head and index.
          * Pre-condition: index must be between 0 and size() inclusively.
-         * @param head Head of the list.
+         *
+         * @param head  Head of the list.
          * @param index Cursor is moved just before the index.
          */
         public DoublyLinkedListIterator(Node<T> head, int index) {
