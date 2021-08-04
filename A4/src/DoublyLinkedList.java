@@ -137,7 +137,6 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
             add(index, iterator.next());
             index++;
         }
-        size += c.size();
         return true;
     }
 
@@ -171,11 +170,9 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
 
     @Override
     public DoublyLinkedList<T> clone() {
-        try {
-            return (DoublyLinkedList<T>) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
+        DoublyLinkedList<T> cloned = new DoublyLinkedList<>();
+        cloned.addAll(0, this);
+        return cloned;
     }
 
     /**
