@@ -318,7 +318,7 @@ public class DoublyLinkedList<T> extends AbstractSequentialList<T> implements Li
     /**
      * Node class for DoublyLinkedList
      */
-    private static final class Node<T> {
+    private static final class Node<T> implements Serializable {
         private T data; //data holder for the node
         private Node<T> next; //link to the next node
         private Node<T> previous; //link to the previous node

@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.*;
+
 public class DoublyLinkedListTests {
     /**
      * variables types check
@@ -262,5 +264,25 @@ public class DoublyLinkedListTests {
         list1.add(3);
         DoublyLinkedList<?> list2 = list1.clone();
         Assertions.assertEquals(list1,list2);
+    }
+
+    @Test
+    void serializable() throws IOException, ClassNotFoundException {
+        DoublyLinkedList<Integer> list1 = new DoublyLinkedList<>();
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
+
+        // tests serializablity
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+        oos.writeObject(list1);
+
+        // tests deserializablity
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bais);
+        DoublyLinkedList<Integer> list2 = (DoublyLinkedList<Integer>) ois.readObject();
+
+        Assertions.assertEquals(list1, list2);
     }
 }
